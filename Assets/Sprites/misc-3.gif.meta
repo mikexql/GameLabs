@@ -703,7 +703,7 @@ TextureImporter:
         width: 16
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -712,6 +712,50 @@ TextureImporter:
       bones: []
       spriteID: 62bf576ad7477824f8b11e4ea30728a8
       internalID: -264694494
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_left
+      rect:
+        serializedVersion: 2
+        x: 391
+        y: 565
+        width: 75
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 2, y: 0, z: 1, w: 1}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d33f7901cb195bd49b02afc2913cf04f
+      internalID: 1605719265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: castle_right
+      rect:
+        serializedVersion: 2
+        x: 465
+        y: 565
+        width: 78
+        height: 180
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 424db034108db8a46ac8d31a2ddc02b1
+      internalID: -506153511
       vertices: []
       indices: 
       edges: []
@@ -732,6 +776,8 @@ TextureImporter:
     nameFileIdTable:
       big_hill: 1284893948
       brick: 2130176455
+      castle_left: 1605719265
+      castle_right: -506153511
       cloud-1: -1551288817
       cloud-2: -1261164735
       cloud-3: -663181845
