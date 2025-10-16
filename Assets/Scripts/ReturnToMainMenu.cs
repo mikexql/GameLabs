@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // later on, teach interface
-public class RestartButtonController : MonoBehaviour, IInteractiveButton
+public class ReturnToMainMenu : MonoBehaviour, IInteractiveButton
 {   
     // implements the interface
     public void ButtonClick()
     {
-        Debug.Log("Onclick restart button");
-        GameManager.instance.GameRestart();
+        Debug.Log("Onclick return to main menu button");
+        GameManager.instance.LoadMainMenu();
     }
 }

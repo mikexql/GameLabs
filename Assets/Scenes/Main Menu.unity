@@ -160,7 +160,7 @@ MonoBehaviour:
   gameOver:
     m_PersistentCalls:
       m_Calls: []
-  gameConstants: {fileID: 0}
+  lastSessionScore: 0
 --- !u!4 &337400921
 Transform:
   m_ObjectHideFlags: 0
@@ -363,6 +363,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8240816643037022434, guid: 0dc70659d8c839b4b801efcb87fff625, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540747876889562359, guid: 0dc70659d8c839b4b801efcb87fff625, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8804421002054792902, guid: 0dc70659d8c839b4b801efcb87fff625, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1909621584}
+    - target: {fileID: 8804421002054792902, guid: 0dc70659d8c839b4b801efcb87fff625, type: 3}
+      propertyPath: m_RenderMode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
