@@ -1,13 +1,13 @@
 using UnityEngine;
 
-public class StompGoomba : Singleton<StompGoomba>
+public class StompGoomba : MonoBehaviour
 {
     GameManager gameManager;
     public Sprite stompedSprite;
     public AudioSource goombaStomp;
     void Start()
     {
-        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        gameManager = GameManager.instance;
     }
 
 

@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerMovement : Singleton<PlayerMovement>
+public class PlayerMovement : MonoBehaviour
 {
     public float speed = 10;
     public float maxSpeed = 20;
@@ -31,6 +32,13 @@ public class PlayerMovement : Singleton<PlayerMovement>
     public Transform gameCamera;
 
     // other methods
+    
+    void Awake(){
+        // other instructions
+        // subscribe to Game Restart event
+        GameManager.instance.gameRestart.AddListener(ResetGame);
+        //GameManager.instance.gameOver.AddListener(ResetGame);
+    }
 
     public void ResetGame()
     {
@@ -46,6 +54,7 @@ public class PlayerMovement : Singleton<PlayerMovement>
         gameCamera.position = new Vector3(0.0f, gameCamera.position.y, gameCamera.position.z);
 
     }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,9 +63,10 @@ public class PlayerMovement : Singleton<PlayerMovement>
         marioBody = GetComponent<Rigidbody2D>();
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
-        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        gameManager = GameManager.instance;
         initialPosition = marioBody.transform.position;
     }
+
 
     // Update is called once per frame
     void Update()

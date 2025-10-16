@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class HUDManager : Singleton<HUDManager>
+public class HUDManager : MonoBehaviour
 {
     public GameObject gameOverCanvas;
     public GameObject inGameCanvas;
@@ -19,6 +19,15 @@ public class HUDManager : Singleton<HUDManager>
     void Update()
     {
 
+    }
+
+    void Awake()
+    {
+        // other instructions
+        GameManager.instance.gameStart.AddListener(GameStart);
+        GameManager.instance.gameOver.AddListener(GameOver);
+        GameManager.instance.gameRestart.AddListener(GameStart);
+        GameManager.instance.scoreChange.AddListener(SetScore);
     }
 
     public void GameStart()

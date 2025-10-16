@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -14,14 +15,15 @@ public class GameManager : Singleton<GameManager>
     private int score = 0;
 
     //Managed items
-    public GameObject player;
-    public GameObject EnemyManager;
-    public GameObject HUDManager;
+    // public GameObject player;
+    // public GameObject EnemyManager;
+    // public GameObject HUDManager;
 
     void Start()
     {
         gameStart.Invoke();
         Time.timeScale = 1.0f;
+        SceneManager.activeSceneChanged += SceneSetup;
     }
 
     // Update is called once per frame
@@ -54,9 +56,15 @@ public class GameManager : Singleton<GameManager>
 
 
     public void GameOver()
-    {   
+    {
         Debug.Log("Game Manager: Game Over!");
         Time.timeScale = 0.0f;
         gameOver.Invoke();
+    }
+    
+    public void SceneSetup(Scene current, Scene next)
+    {
+        gameStart.Invoke();
+        SetScore(score);
     }
 }
