@@ -1706,8 +1706,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HUDManager
   gameOverCanvas: {fileID: 8753771}
   inGameCanvas: {fileID: 1236923546}
+  mainMenuCanvas: {fileID: 0}
   finalScoreText: {fileID: 333383789}
   scoreText: {fileID: 1366697060}
+  mainMenuScoreText: {fileID: 0}
+  startButton: {fileID: 0}
+  resetLastScoreButton: {fileID: 0}
 --- !u!4 &426653601
 Transform:
   m_ObjectHideFlags: 0
@@ -3293,7 +3297,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1544203500}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc020139217392b49900393be358906d, type: 3}
+  m_Script: {fileID: 11500000, guid: b76e082be7b3bc6489d82235c30c764c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RestartButtonController
 --- !u!1 &1569437062
@@ -3919,6 +3923,10 @@ MonoBehaviour:
   gameOver:
     m_PersistentCalls:
       m_Calls: []
+  gameReset:
+    m_PersistentCalls:
+      m_Calls: []
+  lastSessionScore: 0
 --- !u!4 &1886719622
 Transform:
   m_ObjectHideFlags: 0
