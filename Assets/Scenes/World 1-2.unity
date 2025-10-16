@@ -477,10 +477,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: HUD Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 1888192415405924611, guid: 0dc70659d8c839b4b801efcb87fff625, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8240816643037022434, guid: 0dc70659d8c839b4b801efcb87fff625, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.32999
