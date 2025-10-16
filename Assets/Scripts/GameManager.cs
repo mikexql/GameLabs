@@ -18,6 +18,11 @@ public class GameManager : Singleton<GameManager>
 
     public int lastSessionScore;
 
+    // loading control
+    private Coroutine currentLoadRoutine = null;
+    private string currentLoadingTarget = null;
+    private bool loadCancelled = false;
+
 
     //Managed items
     // public GameObject player;
@@ -92,22 +97,27 @@ public class GameManager : Singleton<GameManager>
     
     public void LoadSceneWithDelay(string sceneName, float minDuration = 1f)
     {
-        StartCoroutine(LoadSceneCoroutine(sceneName, minDuration, false));
+        // cancel any existing load
+        if (currentLoadRoutine != null) CancelLoad();
+        currentLoadRoutine = StartCoroutine(LoadSceneCoroutine(sceneName, minDuration, false));
     }
 
     public void LoadSceneWithDelay(string sceneName, float minDuration, bool fromMainMenu)
     {
-        StartCoroutine(LoadSceneCoroutine(sceneName, minDuration, fromMainMenu));
+        if (currentLoadRoutine != null) CancelLoad();
+        currentLoadRoutine = StartCoroutine(LoadSceneCoroutine(sceneName, minDuration, fromMainMenu));
     }
 
     public void ReloadCurrentScene(float minDuration = 0.5f)
     {
-        StartCoroutine(LoadSceneCoroutine(SceneManager.GetActiveScene().name, minDuration, false));
+        if (currentLoadRoutine != null) CancelLoad();
+        currentLoadRoutine = StartCoroutine(LoadSceneCoroutine(SceneManager.GetActiveScene().name, minDuration, false));
     }
 
     public void LoadMainMenu(float minDuration = 0.5f)
     {
-        StartCoroutine(LoadSceneCoroutine("Main Menu", minDuration, false));
+        if (currentLoadRoutine != null) CancelLoad();
+        currentLoadRoutine = StartCoroutine(LoadSceneCoroutine("Main Menu", minDuration, false));
     }
 
     private System.Collections.IEnumerator LoadSceneCoroutine(string sceneName, float minDuration, bool fromMainMenu)
@@ -115,6 +125,8 @@ public class GameManager : Singleton<GameManager>
         // Ensure gameplay timeScale is normal during loading UI
         Time.timeScale = 1f;
         string loadingSceneName = "Loading";
+        currentLoadingTarget = sceneName;
+        loadCancelled = false;
         if (fromMainMenu)
         {
             AsyncOperation loadLoading = SceneManager.LoadSceneAsync(loadingSceneName, LoadSceneMode.Additive);
@@ -125,6 +137,11 @@ public class GameManager : Singleton<GameManager>
             var loadedScene = SceneManager.GetSceneByName(loadingSceneName);
             if (loadedScene.IsValid())
                 SceneManager.SetActiveScene(loadedScene);
+            // Unload the Main Menu scene immediately to avoid overlapping UI and active-scene conflicts
+            if (SceneManager.GetSceneByName("Main Menu").IsValid())
+            {
+                SceneManager.UnloadSceneAsync("Main Menu");
+            }
         }
 
         float startTime = Time.unscaledTime;
@@ -133,6 +150,22 @@ public class GameManager : Singleton<GameManager>
 
         while (!op.isDone)
         {
+            if (loadCancelled)
+            {
+                Debug.Log("GameManager: Load cancelled for " + sceneName);
+                // Attempt to unload partially loaded scene and loading UI
+                if (SceneManager.GetSceneByName(loadingSceneName).IsValid())
+                    SceneManager.UnloadSceneAsync(loadingSceneName);
+
+                if (SceneManager.GetSceneByName(sceneName).IsValid() && SceneManager.GetSceneByName(sceneName).isLoaded)
+                    SceneManager.UnloadSceneAsync(sceneName);
+
+                // cleanup state
+                currentLoadRoutine = null;
+                currentLoadingTarget = null;
+                loadCancelled = false;
+                yield break;
+            }
             if (op.progress >= 0.9f)
             {
                 float elapsed = Time.unscaledTime - startTime;
@@ -151,5 +184,39 @@ public class GameManager : Singleton<GameManager>
         {
             SceneManager.UnloadSceneAsync(loadingSceneName);
         }
+        // clear load state
+        currentLoadRoutine = null;
+        currentLoadingTarget = null;
+        loadCancelled = false;
+    }
+
+    // Public API for cancelling an in-progress load (e.g. from Loading UI)
+    public void CancelLoad()
+    {
+        Debug.Log("GameManager: CancelLoad called");
+        // mark cancellation; coroutine will clean up
+        loadCancelled = true;
+        // Ensure gameplay timeScale is restored
+        Time.timeScale = 1f;
+        // Attempt to unload loading UI immediately if present
+        if (SceneManager.GetSceneByName("Loading").IsValid())
+            SceneManager.UnloadSceneAsync("Loading");
+        // If there's a pending target, try to unload it if already loaded
+        if (!string.IsNullOrEmpty(currentLoadingTarget))
+        {
+            var sc = SceneManager.GetSceneByName(currentLoadingTarget);
+            if (sc.IsValid() && sc.isLoaded)
+                SceneManager.UnloadSceneAsync(currentLoadingTarget);
+        }
+        // Load the Main Menu immediately
+        SceneManager.LoadScene("Main Menu");
+        // reset tracking fields (coroutine will also clear them if still running)
+        currentLoadingTarget = null;
+    }
+
+    // Expose load state for external callers
+    public bool IsLoading
+    {
+        get { return currentLoadRoutine != null; }
     }
 }

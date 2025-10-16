@@ -9,6 +9,13 @@ public class ReturnToMainMenu : MonoBehaviour, IInteractiveButton
     public void ButtonClick()
     {
         Debug.Log("Onclick return to main menu button");
-        GameManager.instance.LoadMainMenu();
+        if (GameManager.instance != null && GameManager.instance.IsLoading)
+        {
+            GameManager.instance.CancelLoad();
+        }
+        else if (GameManager.instance != null)
+        {
+            GameManager.instance.LoadMainMenu();
+        }
     }
 }

@@ -75,9 +75,12 @@ public class MainMenuManager : MonoBehaviour
     public void OnLoadingBackToMenu()
     {
         Debug.Log("MainMenuManager: Loading Main Menu");
-        // Activate local canvas (if any) and load the Main Menu scene.
+        // Activate local canvas (if any) and request cancelling the current load.
         if (mainMenuCanvas != null) mainMenuCanvas.SetActive(true);
-        SceneManager.LoadScene("Main Menu");
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.CancelLoad();
+        }
     }
 
     public void OnResetLastScoreButton()
