@@ -544,7 +544,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7945351526442420616, guid: cce05306d9b9fe74c83b3614af855cd7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.06949031
+      value: -0.158
       objectReference: {fileID: 0}
     - target: {fileID: 7945351526442420616, guid: cce05306d9b9fe74c83b3614af855cd7, type: 3}
       propertyPath: m_LocalPosition.z
@@ -753,6 +753,10 @@ MonoBehaviour:
   gameOver:
     m_PersistentCalls:
       m_Calls: []
+  gameReset:
+    m_PersistentCalls:
+      m_Calls: []
+  lastSessionScore: 0
 --- !u!4 &1410581308
 Transform:
   m_ObjectHideFlags: 0

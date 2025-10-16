@@ -12,6 +12,8 @@ public class GameManager : Singleton<GameManager>
     public UnityEvent<int> scoreChange;
     public UnityEvent gameOver;
 
+    public UnityEvent gameReset;
+
     private int score = 0;
 
     public int lastSessionScore;
@@ -43,6 +45,15 @@ public class GameManager : Singleton<GameManager>
         SetScore(score);
         gameRestart.Invoke();
         Time.timeScale = 1.0f;
+    }
+
+    public void GameReset()
+    {
+        Debug.Log("Game Manager: Reset!");
+        // reset score
+        score = 0;
+        SetScore(score);
+        gameReset.Invoke();
     }
 
     public void IncreaseScore(int increment)

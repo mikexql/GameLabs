@@ -37,7 +37,19 @@ public class PlayerMovement : MonoBehaviour
         // other instructions
         // subscribe to Game Restart event
         GameManager.instance.gameRestart.AddListener(ResetGame);
+        GameManager.instance.gameReset.AddListener(RestartGame);
         //GameManager.instance.gameOver.AddListener(ResetGame);
+    }
+
+    public void RestartGame()
+    {
+        // reset position
+        marioBody.transform.position = initialPosition;
+        // reset sprite direction
+        faceRightState = true;
+        marioSprite.flipX = false;
+        gameCamera.position = new Vector3(0.0f, gameCamera.position.y, gameCamera.position.z);
+
     }
 
     public void ResetGame()
@@ -131,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                if (alive)
+                if (alive&&!marioAnimator.GetBool("mushroom"))
                 {
                     Debug.Log("Collided with goomba from side or below - Mario dies");
                     marioAnimator.Play("mario-die");
