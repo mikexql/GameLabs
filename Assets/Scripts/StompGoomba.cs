@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class StompGoomba : MonoBehaviour
+public class StompGoomba : Singleton<StompGoomba>
 {
     GameManager gameManager;
     public Sprite stompedSprite;

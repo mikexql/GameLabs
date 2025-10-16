@@ -1079,7 +1079,7 @@ Transform:
   m_GameObject: {fileID: 290328344}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1, y: 0.056, z: 0}
+  m_LocalPosition: {x: 8.435, y: -0.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1707,7 +1707,8 @@ Transform:
   m_LocalPosition: {x: 0.32999, y: 0.38913, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1236923550}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &527719873 stripped
@@ -1998,7 +1999,7 @@ Transform:
   m_GameObject: {fileID: 1026887118}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.52, y: -0.373, z: 0}
+  m_LocalPosition: {x: 14.62, y: -0.768, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2224,7 +2225,7 @@ Transform:
   m_GameObject: {fileID: 1183708666}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.28, y: 1.02, z: -10}
+  m_LocalPosition: {x: 8.65, y: 1.02, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -2300,7 +2301,6 @@ GameObject:
   - component: {fileID: 1236923549}
   - component: {fileID: 1236923548}
   - component: {fileID: 1236923547}
-  - component: {fileID: 1236923551}
   m_Layer: 5
   m_Name: Ingame Canvas
   m_TagString: Untagged
@@ -2385,29 +2385,13 @@ RectTransform:
   m_Children:
   - {fileID: 1366697059}
   - {fileID: 210404917}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 426653601}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1236923551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1236923546}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22da693d10a66a04eaf6761b27a2b965, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::HUDManager
-  gameOverCanvas: {fileID: 0}
-  inGameCanvas: {fileID: 0}
-  finalScoreText: {fileID: 0}
-  scoreText: {fileID: 0}
 --- !u!1 &1251382499
 GameObject:
   m_ObjectHideFlags: 0
@@ -4293,11 +4277,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 332477923195542223, guid: 9fb01d09a707e6e4da51f52f1709ac03, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 9.585
       objectReference: {fileID: 0}
     - target: {fileID: 332477923195542223, guid: 9fb01d09a707e6e4da51f52f1709ac03, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.719
       objectReference: {fileID: 0}
     - target: {fileID: 332477923195542223, guid: 9fb01d09a707e6e4da51f52f1709ac03, type: 3}
       propertyPath: m_LocalPosition.z
@@ -4331,11 +4315,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6994861792525778930, guid: 9fb01d09a707e6e4da51f52f1709ac03, type: 3}
+      propertyPath: nextSceneName
+      value: World 1-2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675577330533130655, guid: 9fb01d09a707e6e4da51f52f1709ac03, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7902109928087456368, guid: 9fb01d09a707e6e4da51f52f1709ac03, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 9115819877395547572, guid: 9fb01d09a707e6e4da51f52f1709ac03, type: 3}
       propertyPath: m_Name
       value: Castle
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 9115819877395547572, guid: 9fb01d09a707e6e4da51f52f1709ac03, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 2448643822729137711, guid: 9fb01d09a707e6e4da51f52f1709ac03, type: 3}
+    - {fileID: 6714789475769342090, guid: 9fb01d09a707e6e4da51f52f1709ac03, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -4539,7 +4541,6 @@ SceneRoots:
   - {fileID: 2704620023057078129}
   - {fileID: 3275049294026996393}
   - {fileID: 1251382500}
-  - {fileID: 1236923550}
   - {fileID: 1132584701}
   - {fileID: 8753777}
   - {fileID: 168579993}

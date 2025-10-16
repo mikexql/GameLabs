@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : Singleton<PlayerMovement>
 {
     public float speed = 10;
     public float maxSpeed = 20;
@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public float stompVelocityThreshold = -2.0f;
     [Tooltip("Maximum Y difference (playerY - enemyY) allowed to count as a stomp")]
     public float stompYTolerance = 0.5f;
+    private Vector3 initialPosition;
 
     //Testing refactoring
     GameManager gameManager;
@@ -34,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     public void ResetGame()
     {
         // reset position
-        marioBody.transform.position = new Vector3(-1f, -0.056f, 0.0f);
+        marioBody.transform.position = initialPosition;
         // reset sprite direction
         faceRightState = true;
         marioSprite.flipX = false;
@@ -54,6 +55,7 @@ public class PlayerMovement : MonoBehaviour
         marioSprite = GetComponent<SpriteRenderer>();
         marioAnimator.SetBool("onGround", onGroundState);
         gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        initialPosition = marioBody.transform.position;
     }
 
     // Update is called once per frame

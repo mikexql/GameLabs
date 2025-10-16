@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class HUDManager : MonoBehaviour
+public class HUDManager : Singleton<HUDManager>
 {
     public GameObject gameOverCanvas;
     public GameObject inGameCanvas;
